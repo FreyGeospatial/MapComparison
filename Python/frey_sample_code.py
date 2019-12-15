@@ -135,16 +135,6 @@ def specificity(data):
     else:
         return(correct_rejections(data) / (correct_rejections(data) + false_alarms(data)))
 
-# convert sample to population
-def sample_to_population(data, transformation = 1):
-    if (type(transformation) == np.ndarray and np.shape(transformation) == (len(data), 1)) or type(transformation) == int:
-        return(data * transformation)
-    elif type(transformation) == list:
-        transformation = np.vstack(np.array(transformation))
-        return(data * transformation)
-    else:
-        print("The tranformation array provided has incorrect dimensions.")
-    
 #find column sums
 def column_totals(data):
     column_totals_np = np.zeros(shape=(1, len(data)))
@@ -184,9 +174,6 @@ def size_of_quantity_difference(data):
     return(size_of_quantity_difference_np)
 
 #######################
-#def is_quantity(data, par1=None):
-#    bool_list = np.ndarray.tolist(size_of_quantity_difference(data) > 0)[0]
-#    return([i for i, x in enumerate(bool_list) if x])[par1]
 
 # size of difference (false alarms + misses) for category k (total disagreement):
 def size_of_difference(data):
@@ -258,25 +245,10 @@ def false_alarm_exchange(data):
 
         
 
-# ------------------------------------------------------------------------------
-# This function will call all the previous functions
-# This will generate the final output contingency table Prissskilla designs
-#def contingency_table(dataframe):
-#    dataframe.loc["False Alarm"] = false_alarm(dataframe.index)
-#    return dataframe
-
-    
-
-
 
 # allocation disagreement
 #def allocation_disagreement(data):
 #    return((sum_of_misses(data) - sum_of_false_alarms(data)) - abs(sum_of_misses(data) - sum_of_false_alarms(data)))
-
-
-
-
-
 
 
 
@@ -316,7 +288,6 @@ with rasterio.open(x) as src1:
 #my_raster_vec1 = np.reshape(my_raster_array1, my_raster_array1.size)
 #my_raster_vec2 = np.reshape(my_raster_array2, my_raster_array2.size)
 #confusion_matrix(my_raster_vec1, my_raster_vec2)
-
 
 
 
